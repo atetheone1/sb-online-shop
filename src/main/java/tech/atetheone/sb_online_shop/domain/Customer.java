@@ -19,11 +19,10 @@ public class Customer {
   public Customer() {
   }
 
-  public Customer(String name, String city, double balance, List<Order> orders) {
+  public Customer(String name, String city, double balance) {
     this.fullname = name;
     this.city = city;
     this.balance = balance;
-    this.orders = orders;
   }
 
   public Long getId() {

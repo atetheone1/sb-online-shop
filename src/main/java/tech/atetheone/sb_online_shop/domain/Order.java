@@ -17,8 +17,7 @@ public class Order {
   public Order() {
   }
 
-  public Order(Long id, double total, Customer customer) {
-    this.id = id;
+  public Order(double total, Customer customer) {
     this.total = total;
     this.customer = customer;
   }

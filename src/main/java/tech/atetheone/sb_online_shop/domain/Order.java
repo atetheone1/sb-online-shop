@@ -10,12 +10,17 @@ public class Order {
 
   private double total;
 
+  @ManyToOne(fetch = FetchType.EAGER)
+  @JoinColumn(name = "customer_id")
+  private Customer customer;
+
   public Order() {
   }
 
-  public Order(Long id, double total) {
+  public Order(Long id, double total, Customer customer) {
     this.id = id;
     this.total = total;
+    this.customer = customer;
   }
 
   public double getTotal() {
@@ -32,5 +37,13 @@ public class Order {
 
   public void setId(Long id) {
     this.id = id;
+  }
+
+  public Customer getCustomer() {
+    return customer;
+  }
+
+  public void setCustomer(Customer customer) {
+    this.customer = customer;
   }
 }

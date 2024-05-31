@@ -2,7 +2,9 @@ package tech.atetheone.sb_online_shop.domain;
 
 import jakarta.persistence.*;
 
-@Entity
+import java.util.List;
+
+@Entity(name = "Customers")
 public class Customer {
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
@@ -11,13 +13,17 @@ public class Customer {
   private String fullname, city;
   private double balance;
 
+  @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "customer")
+  private List<Order> orders;
+
   public Customer() {
   }
 
-  public Customer(String name, String city, double balance) {
+  public Customer(String name, String city, double balance, List<Order> orders) {
     this.fullname = name;
     this.city = city;
     this.balance = balance;
+    this.orders = orders;
   }
 
   public Long getId() {
@@ -50,5 +56,13 @@ public class Customer {
 
   public void setBalance(double balance) {
     this.balance = balance;
+  }
+
+  public List<Order> getOrders() {
+    return orders;
+  }
+
+  public void setOrders(List<Order> orders) {
+    this.orders = orders;
   }
 }

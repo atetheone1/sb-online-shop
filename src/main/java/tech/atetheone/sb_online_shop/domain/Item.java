@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 public class Item {
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
-  private int id;
+  private Long id;
 
   private int quantity;
   private double price;
@@ -34,11 +34,11 @@ public class Item {
     this.product = product;
   }
 
-  public int getId() {
+  public Long getId() {
     return id;
   }
 
-  public void setId(int id) {
+  public void setId(Long id) {
     this.id = id;
   }
 

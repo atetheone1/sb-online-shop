@@ -23,13 +23,13 @@ public class Customer {
   public Customer() {
   }
 
-  public Customer(String fullname, String password, String role, double balance, LocalDateTime createdAt, LocalDateTime updatedAt) {
+  public Customer(String fullname, String password, String role, double balance) {
     this.fullname = fullname;
     this.password = password;
     this.role = role;
     this.balance = balance;
-    this.createdAt = createdAt;
-    this.updatedAt = updatedAt;
+    this.createdAt = LocalDateTime.now();
+    this.updatedAt = LocalDateTime.now();
   }
 
   public Long getId() {
@@ -76,9 +76,6 @@ public class Customer {
     return createdAt;
   }
 
-  public void setCreatedAt(LocalDateTime createdAt) {
-    this.createdAt = createdAt;
-  }
 
   public LocalDateTime getUpdatedAt() {
     return updatedAt;

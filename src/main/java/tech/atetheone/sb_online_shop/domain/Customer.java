@@ -2,7 +2,7 @@ package tech.atetheone.sb_online_shop.domain;
 
 import jakarta.persistence.*;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity(name = "Customers")
@@ -14,8 +14,8 @@ public class Customer {
   private String password;
   private String role;
   private double balance;
-  private LocalDate createdAt;
-  private LocalDate updatedAt;
+  private LocalDateTime createdAt;
+  private LocalDateTime updatedAt;
 
   @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "customer")
   private List<Order> orders;
@@ -23,7 +23,7 @@ public class Customer {
   public Customer() {
   }
 
-  public Customer(String fullname, String password, String role, double balance, LocalDate createdAt, LocalDate updatedAt) {
+  public Customer(String fullname, String password, String role, double balance, LocalDateTime createdAt, LocalDateTime updatedAt) {
     this.fullname = fullname;
     this.password = password;
     this.role = role;
@@ -72,19 +72,19 @@ public class Customer {
     this.balance = balance;
   }
 
-  public LocalDate getCreatedAt() {
+  public LocalDateTime getCreatedAt() {
     return createdAt;
   }
 
-  public void setCreatedAt(LocalDate createdAt) {
+  public void setCreatedAt(LocalDateTime createdAt) {
     this.createdAt = createdAt;
   }
 
-  public LocalDate getUpdatedAt() {
+  public LocalDateTime getUpdatedAt() {
     return updatedAt;
   }
 
-  public void setUpdatedAt(LocalDate updatedAt) {
+  public void setUpdatedAt(LocalDateTime updatedAt) {
     this.updatedAt = updatedAt;
   }
 

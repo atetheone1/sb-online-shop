@@ -3,7 +3,7 @@ package tech.atetheone.sb_online_shop.domain;
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
-@Entity
+@Entity(name = "Items")
 public class Item {
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)

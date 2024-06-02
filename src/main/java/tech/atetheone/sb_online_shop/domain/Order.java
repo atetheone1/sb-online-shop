@@ -19,26 +19,31 @@ public class Order {
   @JoinColumn(name = "customer_id")
   private Customer customer;
 
-  @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
+  @OneToMany(fetch = FetchType.EAGER, mappedBy = "order", cascade = CascadeType.ALL)
   private List<Item> items;
 
   public Order() {
   }
 
-  public Order(double total, LocalDateTime createdAt, LocalDateTime updatedAt, Customer customer) {
+  public Order(Customer customer) {
     this.total = total;
-    this.createdAt = createdAt;
-    this.updatedAt = updatedAt;
+    this.createdAt = LocalDateTime.now();
+    this.updatedAt = LocalDateTime.now();
     this.customer = customer;
   }
 
   public double getTotal() {
+    total = 0.0;
+    for (Item item : items) {
+      total += item.getPrice() * item.getQuantity();
+    }
     return total;
   }
 
+  /*
   public void setTotal(double total) {
     this.total = total;
-  }
+  }*/
 
   public Long getId() {
     return id;
@@ -54,5 +59,13 @@ public class Order {
 
   public void setCustomer(Customer customer) {
     this.customer = customer;
+  }
+
+  public List<Item> getItems() {
+    return items;
+  }
+
+  public void setItems(List<Item> items) {
+    this.items = items;
   }
 }

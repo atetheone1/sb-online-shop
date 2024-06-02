@@ -14,22 +14,22 @@ public class Item {
   private LocalDateTime createdAt;
   private LocalDateTime updatedAt;
 
-  @ManyToOne
+  @ManyToOne(fetch = FetchType.EAGER)
   @JoinColumn(name = "order_id")
   private Order order;
 
-  @ManyToOne
+  @ManyToOne(fetch = FetchType.EAGER)
   @JoinColumn(name = "product_id")
   private Product product;
 
   public Item() {
   }
 
-  public Item(int quantity, double price, LocalDateTime createdAt, LocalDateTime updatedAt, Order order, Product product) {
+  public Item(int quantity, double price,  Order order, Product product) {
     this.quantity = quantity;
     this.price = price;
-    this.createdAt = createdAt;
-    this.updatedAt = updatedAt;
+    this.createdAt = LocalDateTime.now();
+    this.updatedAt = LocalDateTime.now();
     this.order = order;
     this.product = product;
   }
@@ -62,9 +62,6 @@ public class Item {
     return createdAt;
   }
 
-  public void setCreatedAt(LocalDateTime createdAt) {
-    this.createdAt = createdAt;
-  }
 
   public LocalDateTime getUpdatedAt() {
     return updatedAt;

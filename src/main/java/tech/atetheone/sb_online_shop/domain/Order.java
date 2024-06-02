@@ -1,6 +1,9 @@
 package tech.atetheone.sb_online_shop.domain;
 
 import jakarta.persistence.*;
+import java.time.LocalDateTime;
+import java.util.List;
+
 
 @Entity(name = "Orders")
 public class Order {
@@ -9,16 +12,23 @@ public class Order {
   private Long id;
 
   private double total;
+  private LocalDateTime createdAt;
+  private LocalDateTime updatedAt;
 
   @ManyToOne(fetch = FetchType.EAGER)
   @JoinColumn(name = "customer_id")
   private Customer customer;
 
+  @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
+  private List<Item> items;
+
   public Order() {
   }
 
-  public Order(double total, Customer customer) {
+  public Order(double total, LocalDateTime createdAt, LocalDateTime updatedAt, Customer customer) {
     this.total = total;
+    this.createdAt = createdAt;
+    this.updatedAt = updatedAt;
     this.customer = customer;
   }
 

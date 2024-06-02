@@ -13,23 +13,23 @@ public class Product {
   private String name;
   private String description;
   private String image;
-  private int price;
+  private double price;
   private LocalDateTime createdAt;
   private LocalDateTime updatedAt;
 
-  @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
+  @OneToMany(fetch = FetchType.EAGER, mappedBy = "product", cascade = CascadeType.ALL)
   private List<Item> items;
 
   public Product() {
   }
 
-  public Product(String name, String description, String image, int price, LocalDateTime createdAt, LocalDateTime updatedAt) {
+  public Product(String name, String description, String image, double price) {
     this.name = name;
     this.description = description;
     this.image = image;
     this.price = price;
-    this.createdAt = createdAt;
-    this.updatedAt = updatedAt;
+    this.createdAt = LocalDateTime.now();
+    this.updatedAt = LocalDateTime.now();
   }
 
   public Long getId() {
@@ -64,20 +64,16 @@ public class Product {
     this.image = image;
   }
 
-  public int getPrice() {
+  public double getPrice() {
     return price;
   }
 
-  public void setPrice(int price) {
+  public void setPrice(double price) {
     this.price = price;
   }
 
   public LocalDateTime getCreatedAt() {
     return createdAt;
-  }
-
-  public void setCreatedAt(LocalDateTime createdAt) {
-    this.createdAt = createdAt;
   }
 
   public LocalDateTime getUpdatedAt() {

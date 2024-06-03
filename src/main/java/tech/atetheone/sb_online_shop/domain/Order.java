@@ -1,11 +1,15 @@
 package tech.atetheone.sb_online_shop.domain;
 
 import jakarta.persistence.*;
+import lombok.*;
+
 import java.time.LocalDateTime;
 import java.util.List;
 
 
 @Entity(name = "Orders")
+@Getter @Setter
+@NoArgsConstructor @ToString
 public class Order {
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
@@ -22,8 +26,6 @@ public class Order {
   @OneToMany(fetch = FetchType.EAGER, mappedBy = "order", cascade = CascadeType.ALL)
   private List<Item> items;
 
-  public Order() {
-  }
 
   public Order(Customer customer) {
     this.total = total;
@@ -38,34 +40,5 @@ public class Order {
       total += item.getPrice() * item.getQuantity();
     }
     return total;
-  }
-
-  /*
-  public void setTotal(double total) {
-    this.total = total;
-  }*/
-
-  public Long getId() {
-    return id;
-  }
-
-  public void setId(Long id) {
-    this.id = id;
-  }
-
-  public Customer getCustomer() {
-    return customer;
-  }
-
-  public void setCustomer(Customer customer) {
-    this.customer = customer;
-  }
-
-  public List<Item> getItems() {
-    return items;
-  }
-
-  public void setItems(List<Item> items) {
-    this.items = items;
   }
 }

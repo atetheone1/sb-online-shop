@@ -2,12 +2,14 @@ package tech.atetheone.sb_online_shop.domain;
 
 import jakarta.persistence.*;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 import java.time.LocalDateTime;
 
 @Entity(name = "Items")
 @Getter @Setter
 @NoArgsConstructor @ToString
+@SuperBuilder
 public class Item {
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)

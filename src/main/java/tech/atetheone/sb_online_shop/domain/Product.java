@@ -2,6 +2,7 @@ package tech.atetheone.sb_online_shop.domain;
 
 import jakarta.persistence.*;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -9,6 +10,7 @@ import java.util.List;
 @Entity(name = "Products")
 @Getter @Setter
 @NoArgsConstructor @ToString
+@SuperBuilder
 public class Product {
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)

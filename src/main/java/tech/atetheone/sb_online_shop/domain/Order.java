@@ -28,14 +28,6 @@ public class Order {
   @OneToMany(fetch = FetchType.EAGER, mappedBy = "order", cascade = CascadeType.ALL)
   private List<Item> items;
 
-
-  public Order(Customer customer) {
-    this.total = total;
-    this.createdAt = LocalDateTime.now();
-    this.updatedAt = LocalDateTime.now();
-    this.customer = customer;
-  }
-
   public double getTotal() {
     total = 0.0;
     for (Item item : items) {

@@ -26,13 +26,4 @@ public class Product {
   @OneToMany(fetch = FetchType.EAGER, mappedBy = "product", cascade = CascadeType.ALL)
   private List<Item> items;
 
-
-  public Product(String name, String description, String image, double price) {
-    this.name = name;
-    this.description = description;
-    this.image = image;
-    this.price = price;
-    this.createdAt = LocalDateTime.now();
-    this.updatedAt = LocalDateTime.now();
-  }
 }

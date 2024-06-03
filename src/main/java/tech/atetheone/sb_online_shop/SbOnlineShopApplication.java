@@ -64,7 +64,7 @@ public SbOnlineShopApplication(
 
     // Create an item
 		// Create items and assign to orders
-		Item i1 = new Item(1, shirt.getPrice(), o1, shirt);
+		Item i1 = new Item(2, shirt.getPrice(), o1, shirt);
 		Item i2 = new Item(1, phone.getPrice(), o2, phone);
 		Item i3 = new Item(1, tv.getPrice(), o2, tv);
 		Item i4 = new Item(1, shoes.getPrice(), o2, shoes);
@@ -80,7 +80,7 @@ public SbOnlineShopApplication(
 		// Print all orders
 		System.out.println("----- All Orders ------");
 		for (Order o : orderRepository.findAll()) {
-			System.out.println("Customer: " + o.getCustomer().getFullname() + ": Order " + o.getId() + ": Total: " + o.getTotal() + "$");
+			System.out.println("Order ID: " + o.getId() + " - Total: " + o.getTotal() + "$ - Customer: " + o.getCustomer().getFullname());
 			for (Item item : o.getItems()) {
 				System.out.println("\tItem: " + item.getQuantity() + " x " + item.getProduct().getName() + " (" + item.getProduct().getPrice() + "$)");
 			}

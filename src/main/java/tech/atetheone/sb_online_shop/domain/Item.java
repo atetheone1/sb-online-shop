@@ -27,4 +27,26 @@ public class Item {
   @ManyToOne(fetch = FetchType.EAGER)
   @JoinColumn(name = "product_id")
   private Product product;
+
+
+  public Item(int quantity, double price,  Order order, Product product) {
+    this.quantity = quantity;
+    this.price = price;
+    this.createdAt = LocalDateTime.now();
+    this.updatedAt = LocalDateTime.now();
+    this.order = order;
+    this.product = product;
+  }
+
+  @PrePersist
+  protected void onCreate() {
+    this.createdAt = LocalDateTime.now();
+    this.updatedAt = LocalDateTime.now();
+  }
+
+  @PreUpdate
+  protected void onUpdate() {
+    this.updatedAt = LocalDateTime.now();
+  }
+
 }

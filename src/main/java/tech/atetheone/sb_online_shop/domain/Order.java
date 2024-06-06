@@ -28,11 +28,30 @@ public class Order {
   @OneToMany(fetch = FetchType.EAGER, mappedBy = "order", cascade = CascadeType.ALL)
   private List<Item> items;
 
+
+  public Order(Customer customer) {
+    this.total = 0;
+    this.createdAt = LocalDateTime.now();
+    this.updatedAt = LocalDateTime.now();
+    this.customer = customer;
+  }
+
   public double getTotal() {
     total = 0.0;
     for (Item item : items) {
       total += item.getPrice() * item.getQuantity();
     }
     return total;
+  }
+
+  @PrePersist
+  protected void onCreate() {
+    this.createdAt = LocalDateTime.now();
+    this.updatedAt = LocalDateTime.now();
+  }
+
+  @PreUpdate
+  protected void onUpdate() {
+    this.updatedAt = LocalDateTime.now();
   }
 }

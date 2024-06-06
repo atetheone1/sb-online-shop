@@ -25,4 +25,26 @@ public class Customer {
 
   @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "customer")
   private List<Order> orders;
+
+
+  public Customer(String fullname, String password, String role, double balance) {
+    this.fullname = fullname;
+    this.password = password;
+    this.role = role;
+    this.balance = balance;
+    this.createdAt = LocalDateTime.now();
+    this.updatedAt = LocalDateTime.now();
+  }
+
+  @PrePersist
+  protected void onCreate() {
+    this.createdAt = LocalDateTime.now();
+    this.updatedAt = LocalDateTime.now();
+  }
+
+  @PreUpdate
+  protected void onUpdate() {
+    this.updatedAt = LocalDateTime.now();
+  }
+
 }
